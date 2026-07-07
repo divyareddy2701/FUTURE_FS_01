@@ -6,7 +6,8 @@ CIN ID: FIT/JUN26/FS18741
 A single-page personal portfolio site showcasing my skills, projects, patent, and publication as an Electronics & Computer Engineering student, full-stack developer, and embedded systems enthusiast.
 
 ## 🔗 Live Site
-Coming soon — will be updated after GitHub Pages deployment.
+
+https://divyareddy2701.github.io/FUTURE_FS_01/
 ## Features
 
 - Interactive resume-style sections: About, Skills, Projects, Patent & Publication, Contact
