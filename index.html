@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Divya Sri Karrolla | Portfolio</title>
+
+<meta name="description" content="Portfolio of Divya Sri Karrolla, Final-Year Electronics & Computer Engineering student at Anurag University. Skilled in Full Stack Development, Java, Spring Boot, IoT, Embedded Systems, and Web Development." />
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #0a0e14;
+    --bg-panel: #10151f;
+    --bg-panel-2: #141b28;
+    --line: #212b3d;
+    --copper: #e0935b;
+    --copper-dim: #a8663a;
+    --pcb-green: #3fa77c;
+    --text: #edede3;
+    --text-muted: #8b93a7;
+    --radius: 10px;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'Manrope', sans-serif;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a{ color: var(--copper); text-decoration: none; }
+  a:hover{ text-decoration: underline; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline: 2px solid var(--copper);
+    outline-offset: 3px;
+  }
+  img{ max-width: 100%; display:block; }
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Nav */
+  header{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(10,14,20,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 16px 24px; max-width: 1080px; margin: 0 auto;
+  }
+  .logo{
+    font-family: var(--mono); font-weight:600; color: var(--text);
+    font-size: 15px; letter-spacing: 0.5px;
+  }
+  .logo span{ color: var(--copper); }
+  nav ul{ list-style:none; display:flex; gap:28px; margin:0; padding:0; }
+  nav ul li a{ color: var(--text-muted); font-size: 14px; font-weight:600; }
+  nav ul li a:hover{ color: var(--text); text-decoration:none; }
+  .nav-toggle{ display:none; background:none; border:1px solid var(--line); color:var(--text); border-radius:6px; padding:8px 10px; }
+
+  /* Section label — code-comment style, ties to the subject */
+  .eyebrow{
+    font-family: var(--mono);
+    color: var(--pcb-green);
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+    display:block;
+  }
+
+  section{ padding: 96px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  h1,h2,h3{ font-family: var(--mono); margin:0; }
+  h2{ font-size: 28px; margin-bottom: 8px; }
+  .section-intro{ color: var(--text-muted); max-width: 620px; margin-bottom: 48px; }
+
+  /* Hero */
+  .hero{
+    padding-top: 72px;
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.15;
+    margin-bottom: 18px;
+  }
+  .hero h1 .accent{ color: var(--copper); }
+  .hero p{ color: var(--text-muted); font-size: 17px; max-width: 480px; margin-bottom: 28px; }
+  .hero-tags{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom: 32px; }
+  .tag{
+    font-family: var(--mono); font-size: 12.5px; color: var(--text-muted);
+    border: 1px solid var(--line); padding: 6px 12px; border-radius: 20px;
+  }
+  .cta-row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-family: var(--mono); font-weight:600; font-size: 14px;
+    padding: 13px 22px; border-radius: 8px; display:inline-block;
+  }
+  .btn-primary{ background: var(--copper); color:#1a1207; }
+  .btn-primary:hover{ background:#eba471; text-decoration:none; }
+  .btn-ghost{ border:1px solid var(--line); color: var(--text); }
+  .btn-ghost:hover{ border-color: var(--copper); color: var(--copper); text-decoration:none; }
+
+  /* PCB trace signature */
+  .trace-wrap{ display:flex; justify-content:center; }
+  .trace-wrap svg{ width:100%; height:auto; max-width: 420px; }
+  .trace-path{
+    fill:none; stroke: var(--pcb-green); stroke-width:2;
+    stroke-dasharray: 900; stroke-dashoffset: 900;
+    animation: draw 2.4s ease forwards 0.3s;
+  }
+  .trace-node circle{ fill: var(--bg-panel); stroke: var(--copper); stroke-width:2; }
+  .trace-node.final circle{ fill: var(--copper); stroke: var(--copper); }
+  .trace-node text{
+    font-family: var(--mono); font-size: 10px; fill: var(--text-muted);
+  }
+  .trace-node.final text{ fill: var(--text); font-size:11px; font-weight:600; }
+  @keyframes draw{ to{ stroke-dashoffset: 0; } }
+  @media (prefers-reduced-motion: reduce){
+    .trace-path{ animation: none; stroke-dashoffset: 0; }
+  }
+
+  /* About */
+  .about-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .about-grid p{ color: var(--text-muted); }
+  .credential-list{ list-style:none; margin: 24px 0 0; padding:0; display:flex; flex-direction:column; gap:14px; }
+  .credential-list li{
+    display:flex; gap:12px; align-items:flex-start;
+    font-size: 14.5px; color: var(--text);
+    padding: 14px 16px; background: var(--bg-panel); border:1px solid var(--line); border-radius: var(--radius);
+  }
+  .credential-list li .dot{ color: var(--pcb-green); font-family: var(--mono); }
+
+  /* Skills */
+  .skills-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
+  .skill-card{
+    background: var(--bg-panel); border:1px solid var(--line); border-radius: var(--radius);
+    padding: 20px; text-align:center;
+  }
+  .skill-card .label{ font-family: var(--mono); font-size:14px; }
+  .skill-card .role{ font-size:12px; color: var(--text-muted); margin-top:6px; }
+
+  /* Projects */
+  .project-card{
+    display:grid; grid-template-columns: 1fr 2fr; gap: 32px;
+    background: var(--bg-panel); border:1px solid var(--line); border-radius: var(--radius);
+    padding: 32px; margin-bottom: 24px;
+  }
+  .project-card .tag-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .project-card .tag-row span{
+    font-family: var(--mono); font-size:11px; color: var(--pcb-green);
+    border:1px solid var(--line); padding:4px 9px; border-radius: 20px;
+  }
+  .project-card h3{ font-size:19px; margin-bottom:8px; }
+  .project-card .project-meta{ font-family: var(--mono); font-size:12px; color: var(--copper); margin-bottom:14px; display:block; }
+  .project-card p{ color: var(--text-muted); font-size:14.5px; }
+  .project-card ul{ margin: 12px 0 0; padding-left: 18px; color: var(--text-muted); font-size:14px; }
+  .project-badge{
+    align-self:start; font-family: var(--mono); font-size:11px; color:#1a1207;
+    background: var(--copper); padding: 5px 10px; border-radius:6px; display:inline-block; margin-bottom:10px;
+  }
+
+  /* Patent / publication highlight */
+  .highlight-box{
+    background: linear-gradient(135deg, var(--bg-panel-2), var(--bg-panel));
+    border: 1px solid var(--copper-dim);
+    border-radius: var(--radius);
+    padding: 36px;
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+  .highlight-item .k{ font-family: var(--mono); font-size:12px; color: var(--copper); display:block; margin-bottom:10px; }
+  .highlight-item p{ color: var(--text-muted); font-size:14.5px; }
+
+  /* Contact */
+  .contact-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  form{ display:flex; flex-direction:column; gap:16px; }
+  label{ font-family: var(--mono); font-size:12.5px; color: var(--text-muted); margin-bottom:6px; display:block; }
+  input, textarea{
+    width:100%; background: var(--bg-panel); border:1px solid var(--line); color: var(--text);
+    border-radius:8px; padding:12px 14px; font-family: var(--sans); font-size:14.5px;
+  }
+  textarea{ resize:vertical; min-height:120px; }
+  .form-status{ font-family: var(--mono); font-size:13px; color: var(--pcb-green); min-height:18px; }
+  .contact-links{ display:flex; flex-direction:column; gap:16px; }
+  .contact-links a{ color: var(--text); font-size:15px; }
+  .contact-links .k{ font-family: var(--mono); font-size:12px; color: var(--text-muted); display:block; margin-bottom:4px; }
+
+  footer{ padding: 40px 0; text-align:center; color: var(--text-muted); font-size:13px; }
+  footer a{ color: var(--text-muted); }
+
+  @media (max-width: 860px){
+    .hero{ grid-template-columns: 1fr; }
+    .about-grid{ grid-template-columns: 1fr; }
+    .skills-grid{ grid-template-columns: repeat(2, 1fr); }
+    .project-card{ grid-template-columns: 1fr; }
+    .highlight-box{ grid-template-columns: 1fr; }
+    .contact-grid{ grid-template-columns: 1fr; }
+    nav ul{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">DIVYA<span>.</span>SRI</div>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#patent">Patent &amp; Paper</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <div>
+      <span class="eyebrow">// engineering student, full-stack developer</span>
+      <h1>I build systems that go from <span class="accent">sensor</span> to <span class="accent">server</span>.</h1>
+      <p>Divya Sri Karrolla — final-year Electronics &amp; Computer Engineering student at Anurag University, Hyderabad. I design embedded hardware and the full-stack software that sits on top of it, from a patent-filed gesture communication device to production-style Spring Boot applications.</p>
+      <div class="hero-tags">
+        <span class="tag">Embedded C</span>
+        <span class="tag">Java / Spring Boot</span>
+        <span class="tag">Python</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">JavaScript</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#projects">View Projects</a>
+        <a class="btn btn-ghost" href="assets/Divyasri_Karrolla_Resume.pdf" target="_blank" rel="noopener">Download Resume</a>
+      </div>
+    </div>
+
+    <div class="trace-wrap" aria-hidden="true">
+      <svg viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg">
+        <path class="trace-path" d="M40,40 L160,40 L160,120 L280,120 L280,200 L120,200 L120,280 L200,280 L200,360" />
+        <g class="trace-node"><circle cx="40" cy="40" r="7"/><text x="55" y="35">EMBEDDED C</text></g>
+        <g class="trace-node"><circle cx="160" cy="120" r="7"/><text x="175" y="115">ESP32 / IoT</text></g>
+        <g class="trace-node"><circle cx="280" cy="200" r="7"/><text x="295" y="195">JAVA</text></g>
+        <g class="trace-node"><circle cx="120" cy="280" r="7"/><text x="10" y="275">SPRING BOOT</text></g>
+        <g class="trace-node final"><circle cx="200" cy="360" r="10"/><text x="218" y="365">D. S. KARROLLA</text></g>
+      </svg>
+    </div>
+  </section>
+
+  <section id="about" class="wrap">
+    <span class="eyebrow">// 01 — about</span>
+    <h2>From ECE fundamentals to shipped software</h2>
+    <div class="about-grid">
+      <p>I started in Electronics and Computer Engineering learning how signals, circuits, and microcontrollers work — and have carried that systems-level thinking into full-stack web development. That combination shows up directly in my project work: hardware prototypes that need real backend infrastructure, and web applications built with the same rigor I'd apply to a circuit board.</p>
+      <ul class="credential-list">
+        <li><span class="dot">▸</span> Final-year B.Tech, Electronics &amp; Computer Engineering — Anurag University, Hyderabad</li>
+        <li><span class="dot">▸</span> Co-inventor on an Indian patent application (Patents Act, 1970) for a gesture-based ISL communication device</li>
+        <li><span class="dot">▸</span> Co-author on a published research paper related to the same project</li>
+        <li><span class="dot">▸</span> Cisco Cyber Security certified; currently preparing for CompTIA Security+</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="skills" class="wrap">
+    <span class="eyebrow">// 02 — skills</span>
+    <h2>Toolkit</h2>
+    <p class="section-intro">The stack I use to go from an idea to a working prototype, on both the hardware and software side.</p>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="label">Embedded C</div><div class="role">Microcontroller firmware, ESP32</div></div>
+      <div class="skill-card"><div class="label">Java + Spring Boot</div><div class="role">Backend APIs, Spring Security</div></div>
+      <div class="skill-card"><div class="label">Python</div><div class="role">Scripting, data handling</div></div>
+      <div class="skill-card"><div class="label">MySQL</div><div class="role">Schema design, queries</div></div>
+      <div class="skill-card"><div class="label">JavaScript / HTML / CSS</div><div class="role">Frontend interfaces</div></div>
+      <div class="skill-card"><div class="label">Networking &amp; Security</div><div class="role">CCNA / Security+ topics, VPNs</div></div>
+    </div>
+  </section>
+
+  <section id="projects" class="wrap">
+    <span class="eyebrow">// 03 — projects</span>
+    <h2>Selected work</h2>
+    <p class="section-intro">Projects spanning IoT hardware, assistive technology, and full-stack web applications.</p>
+
+    <article class="project-card">
+      <div>
+        <span class="project-badge">Patent Filed</span>
+      </div>
+      <div>
+        <span class="project-meta">Gesture-Based ISL Communication Device</span>
+        <h3>Real-time sign language translation wearable</h3>
+        <p>A wearable device that interprets Indian Sign Language gestures in real time, developed to help bridge communication for the deaf and hard-of-hearing community. Co-filed as an Indian patent application under the Patents Act, 1970, guided by Dr. Raghu Indrakanti, and formed the basis of a co-authored research paper.</p>
+        <div class="tag-row"><span>Embedded C</span><span>Sensors</span><span>Signal Processing</span><span>Assistive Tech</span></div>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div>
+        <span class="project-badge" style="background:var(--pcb-green); color:#08130e;">Full-Stack</span>
+      </div>
+      <div>
+        <span class="project-meta">SpendWise</span>
+        <h3>Personal expense tracker</h3>
+        <p>A production-style personal finance tracker with a Spring Boot backend (port 8081), MySQL persistence, and Spring Security-based authentication, paired with a vanilla JS/HTML/CSS frontend in a dark "Obsidian Luxury" aesthetic.</p>
+        <ul>
+          <li>DTO layer, hashed password storage, and a full CSV export endpoint</li>
+          <li>Custom dark-themed UI built without a frontend framework</li>
+        </ul>
+        <div class="tag-row"><span>Java</span><span>Spring Boot</span><span>Spring Security</span><span>MySQL</span></div>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div>
+        <span class="project-badge" style="background:var(--copper); color:#1a1207;">IoT</span>
+      </div>
+      <div>
+        <span class="project-meta">Dhriti</span>
+        <h3>IoT-based support system for autistic children</h3>
+        <p>An ESP32-based wearable system using multiple sensors to help caregivers monitor and support autistic children, documented through a full mini-project report covering system design and implementation.</p>
+        <div class="tag-row"><span>ESP32</span><span>Sensors</span><span>IoT</span></div>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div>
+        <span class="project-badge" style="background:var(--text-muted); color:#0a0e14;">Networking</span>
+      </div>
+      <div>
+        <span class="project-meta">Hybrid Cloud VPN</span>
+        <h3>Secure hybrid cloud connectivity</h3>
+        <p>A networking project exploring secure VPN connectivity between on-premise and cloud environments, built alongside coursework in CCNA and Security+ topics including cryptography and secure tunneling.</p>
+        <div class="tag-row"><span>Networking</span><span>Security</span><span>Cloud</span></div>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div>
+        <span class="project-badge" style="background:var(--text-muted); color:#0a0e14;">Concept</span>
+      </div>
+      <div>
+        <span class="project-meta">SafeStep</span>
+        <h3>AI-powered fall-detection band for construction workers</h3>
+        <p>A wearable safety concept designed to detect falls on construction sites and trigger alerts, proposed as an IoT/AI mini-project with a focus on worker safety.</p>
+        <div class="tag-row"><span>IoT</span><span>AI</span><span>Safety</span></div>
+      </div>
+    </article>
+  </section>
+
+  <section id="patent" class="wrap">
+    <span class="eyebrow">// 04 — patent &amp; publication</span>
+    <h2>Recognized contributions</h2>
+    <div class="highlight-box">
+      <div class="highlight-item">
+        <span class="k">▸ INDIAN PATENT APPLICATION</span>
+        <p>Co-filed under the Patents Act, 1970, for the gesture-based Indian Sign Language communication device — guided by Dr. Raghu Indrakanti.</p>
+      </div>
+      <div class="highlight-item">
+        <span class="k">▸ RESEARCH PUBLICATION</span>
+        <p>Co-authored a research paper detailing the design and implementation of the same gesture-recognition system.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap">
+    <span class="eyebrow">// 05 — contact</span>
+    <h2>Let's talk</h2>
+    <p class="section-intro">Open to internship opportunities in full-stack development, embedded systems, and IoT.</p>
+    <div class="contact-grid">
+      <div class="contact-links">
+        <div>
+          <span class="k">EMAIL</span>
+          <a href="mailto:karrolladivyasri@gmail.com">karrolladivyasri@gmail.com</a>
+        </div>
+        <div>
+  <span class="k">LINKEDIN</span>
+  <a href="https://www.linkedin.com/in/divyasri-karrolla-a77389315" target="_blank" rel="noopener">
+    linkedin.com/in/divyasri-karrolla-a77389315
+  </a>
+</div>
+
+<div>
+  <span class="k">GITHUB</span>
+  <a href="https://github.com/divyareddy2701" target="_blank" rel="noopener">
+    github.com/divyareddy2701
+  </a>
+</div>
+
+<div>
+  <span class="k">LOCATION</span>
+  <span style="color:var(--text-muted)">Hyderabad, Telangana, India</span>
+</div>
+
+      <form id="contact-form" action="https://formsubmit.co/karrolladivyasri@gmail.com" method="POST">
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="New portfolio message" />
+        <input type="hidden" name="_captcha" value="false" />
+        <button type="submit" class="btn btn-primary" style="border:none; cursor:pointer;">Send message</button>
+        <div class="form-status" id="form-status" role="status"></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p>Built by Divya Sri Karrolla · <a href="https://github.com/divyareddy2701" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/divyasri-karrolla-a77389315" target="_blank" rel="noopener">
+    linkedin.com/in/divyasri-karrolla-a77389315
+</a>
+
+<script>
+  // Basic client-side validation feedback for the contact form.
+  // Works with formsubmit.co out of the box once the email above is set —
+  // no backend required for Task 1. See README for the optional Node.js version.
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+  if (form) {
+    form.addEventListener('submit', () => {
+      status.textContent = 'Sending...';
+    });
+  }
+</script>
+
+</body>
+</html>
