@@ -7,12 +7,12 @@ A single-page personal portfolio site showcasing my skills, projects, patent, an
 
 ## 🔗 Live Site
 
-https://divyareddy2701.github.io/FUTURE_FS_01/
+https://divyasri-karrolla-portfolio.netlify.app/
 ## Features
 
 - Interactive resume-style sections: About, Skills, Projects, Patent & Publication, Contact
-- Real project write-ups: SpendWise, the gesture-based ISL communication device (patent-filed), Dhriti, Hybrid Cloud VPN, and SafeStep
-- Contact form (via [formsubmit.co](https://formsubmit.co), no backend required to start)
+- Real project write-ups: SpendWise, the gesture-based ISL communication device (patent-filed), Dhriti, and Hybrid Cloud VPN
+- Contact form (via Web3Forms, no backend required)
 - Fully responsive layout (mobile / tablet / desktop)
 - Semantic HTML, keyboard-focus states, and `prefers-reduced-motion` support for accessibility
 - SEO-friendly meta description and heading structure
@@ -23,7 +23,7 @@ https://divyareddy2701.github.io/FUTURE_FS_01/
 |---|---|
 | Frontend | HTML5, CSS3 (custom properties), vanilla JavaScript |
 | Fonts | IBM Plex Mono, Manrope (Google Fonts) |
-| Contact form | FormSubmit (no backend needed) |
+| Contact form | Web3Forms (no backend needed) |
 | Optional backend | Node.js + Express (see "Adding a real backend" below) |
 
 ## Folder Structure
@@ -56,8 +56,8 @@ Visit `http://localhost:5500`.
 - [x] Contact form is configured with my email: karrolladivyasri@gmail.com
 - [x] LinkedIn and GitHub links are updated with my usernames
 - [x] Resume PDF added to `assets/Divyasri_Karrolla_Resume.pdf`
-- [x] Contact form activated using FormSubmit
-- [ ] Update the live site link in this README once deployed
+- [x] Contact form activated using Web3Forms
+- [x] Live site updated to Netlify deployment
 
 ## Deployment (GitHub Pages)
 
@@ -66,7 +66,7 @@ Visit `http://localhost:5500`.
 3. Under "Build and deployment", set Source to `Deploy from a branch`, branch `main`, folder `/ (root)`
 4. Your site will be live at:
 
-https://divyareddy2701.github.io/FUTURE_FS_01/
+https://divyasri-karrolla-portfolio.netlify.app/
 ## Adding a Real Backend (Optional Extension)
 
 The task allows an optional Node.js backend for the contact form or a simple blog. A natural next step:
